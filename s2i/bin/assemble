@@ -20,7 +20,7 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
 fi
 
 echo "---> Installing application source..."
-cp -Rf /tmp/src/. ./
+rsync -rtv /tmp/src/ .
 
 echo "---> Building application from source..."
 mvn clean install -B -Dmaven.repo.local=./.m2_repo --non-recursive
