@@ -6,7 +6,7 @@ RUN yum -y update
 RUN yum -y install epel-release
 RUN yum -y update
 RUN yum -y install python-pip
-RUN pip install jstools
+RUN pip install jstools virtualenv
 RUN ln -s /usr/lib64/python2.7/site-packages/jstools /usr/bin
 RUN curl -sSL https://get.docker.com/ | sh
 
