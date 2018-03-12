@@ -10,6 +10,8 @@ RUN pip install jstools virtualenv
 RUN ln -s /usr/lib64/python2.7/site-packages/jstools /usr/bin
 RUN curl -sSL https://get.docker.com/ | sh
 
+RUN usermod -a -G docker default
+
 ENV LC_ALL C.UTF-8
 
 # openshift s2i specific
