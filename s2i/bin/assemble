@@ -21,10 +21,6 @@ fi
 
 echo "---> Installing application source..."
 rsync -rtv /tmp/src/ .
-# some debugging infos
-ls -lah /var/run/docker.sock
-cat /var/run/secrets/openshift.io/push
-
 
 echo "---> Building application from source..."
 mvn clean install -B -Dmaven.repo.local=./.m2_repo --non-recursive
