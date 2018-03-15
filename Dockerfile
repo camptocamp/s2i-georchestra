@@ -2,16 +2,9 @@
 FROM appuio/s2i-maven-java:latest
 
 USER root
-RUN yum -y update
-RUN yum -y install epel-release
-RUN yum -y update
-RUN yum -y install python-pip
+RUN yum -y update && yum -y install epel-release && yum -y update && yum -y install python-pip
 RUN pip install jstools virtualenv
 RUN ln -s /usr/lib64/python2.7/site-packages/jstools /usr/bin
-RUN curl -sSL https://get.docker.com/ | sh
-
-RUN usermod -a -G docker default
-RUN usermod -a -G 999 default
 
 ENV LC_ALL C.UTF-8
 
