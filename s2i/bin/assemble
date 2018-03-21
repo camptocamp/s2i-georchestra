@@ -23,4 +23,4 @@ echo "---> Installing application source..."
 rsync -rtv /tmp/src/ .
 
 echo "---> Building application from source..."
-mvn clean install -B -Dmaven.repo.local=./.m2_repo -Psentry-log4j,docker 
+mvn clean install -B -Dmaven.repo.local=./.m2_repo -Psentry-log4j,docker -DskipTests
