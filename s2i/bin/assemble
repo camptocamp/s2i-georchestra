@@ -21,6 +21,22 @@ fi
 
 echo "---> Installing application source..."
 rsync -rtv /tmp/src/ .
+rm -rf /tmp/src
+
 
 echo "---> Building application from source..."
 mvn clean install -B -Dmaven.repo.local=./.m2_repo -Psentry-log4j,docker -DskipTests
+rm -rf .m2_repo
+cp ./security-proxy/target/ROOT.war            \
+   ./console/target/console.war                \
+   ./geonetwork/web/target/geonetwork.war      \
+   ./analytics/target/analytics.war            \
+   ./mapfishapp/target/mapfishapp.war          \
+   ./geoserver/webapp/target/geoserver.war     \
+   ./geowebcache-webapp/target/geowebcache.war \
+   ./atlas/target/atlas.war                    \
+   ./header/target/header.war                  \
+   ./cas-server-webapp/target/cas.war          \
+   ./extractorapp/target/extractorapp.war      \
+   /tmp/deliverables/
+rm -rf /opt/app-root/src/
