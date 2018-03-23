@@ -7,4 +7,9 @@
 # For more information see the documentation:
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
-tar cf - .m2_repo
+pushd ${HOME} >/dev/null
+
+# ${HOME}/.m2 is the maven repo dir
+tar cf - ./.m2_repo
+
+popd >/dev/null

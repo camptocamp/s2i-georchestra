@@ -7,6 +7,18 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
+# restore maven dependencies downloaded in a previous build,
+# so they do not have to be downloaded again.
+# /opt/s2i/destination/artifacts will only be present in the incremental build scenario
+# in which the target image name is an existing docker image which contains
+# dependencies from a prior build execution.
+function restore_saved_artifacts() {
+  if [ "$(ls -A /opt/s2i/destination/artifacts/ 2>/dev/null)" ]; then
+    echo -n "Restoring saved artifacts from prior build..."
+    mv /opt/s2i/destination/artifacts/.m2/repository $HOME/.m2_repo
+  fi
+}
+
 # If the 's2i-georchestra' assemble script is executed with the '-h' flag, print the usage.
 if [[ "$1" == "-h" ]]; then
 	exec /usr/libexec/s2i/usage
@@ -18,6 +30,10 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."
   mv /tmp/artifacts/. ./
 fi
+
+# restore any maven dependencies which will be present if this is an
+# incremental build
+restore_saved_artifacts
 
 echo "---> Installing application source..."
 rsync -rtv /tmp/src/ .
