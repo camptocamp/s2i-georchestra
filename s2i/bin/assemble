@@ -42,7 +42,7 @@ rm -rf /tmp/src
 
 echo "---> Building application from source..."
 mvn clean install -B -Dmaven.repo.local=./.m2_repo -Psentry-log4j,docker -DskipTests
-rm -rf .m2_repo
+#rm -rf .m2_repo
 cp ./security-proxy/target/ROOT.war            \
    ./console/target/console.war                \
    ./geonetwork/web/target/geonetwork.war      \
