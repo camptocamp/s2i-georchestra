@@ -15,7 +15,7 @@
 function restore_saved_artifacts() {
   if [ "$(ls -A /opt/s2i/destination/artifacts/ 2>/dev/null)" ]; then
     echo -n "Restoring saved artifacts from prior build..."
-    mv /opt/s2i/destination/artifacts/.m2/repository $HOME/.m2_repo
+    mv /opt/s2i/destination/artifacts/.m2/repository $HOME/.m2
   fi
 }
 
@@ -37,12 +37,10 @@ restore_saved_artifacts
 
 echo "---> Installing application source..."
 rsync -rtv /tmp/src/ .
-rm -rf /tmp/src
-
 
 echo "---> Building application from source..."
-mvn clean install -B -Dmaven.repo.local=./.m2_repo -Psentry-log4j,docker -DskipTests
-#rm -rf .m2_repo
+mvn clean install -B -Dmaven.repo.local=./.m2 -Psentry-log4j,docker -DskipTests
+
 cp ./security-proxy/target/ROOT.war            \
    ./console/target/console.war                \
    ./geonetwork/web/target/geonetwork.war      \
@@ -55,4 +53,3 @@ cp ./security-proxy/target/ROOT.war            \
    ./cas-server-webapp/target/cas.war          \
    ./extractorapp/target/extractorapp.war      \
    /tmp/deliverables/
-rm -rf /opt/app-root/src/
