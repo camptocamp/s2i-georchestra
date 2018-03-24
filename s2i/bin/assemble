@@ -13,9 +13,8 @@ if [[ "$1" == "-h" ]]; then
 fi
 
 # Restore deps from the previous build (if they exist).
-#
-if [ "$(ls /tmp/artifacts/.m2 2>/dev/null)" ]; then
-  echo "---> Restoring build artifacts..."
+if [ "$(ls -a /tmp/artifacts 2>/dev/null)" ]; then
+  echo "---> Restoring build dependencies..."
   mv /tmp/artifacts/.m2 ./
 fi
 
@@ -37,3 +36,5 @@ cp ./security-proxy/target/ROOT.war            \
    ./cas-server-webapp/target/cas.war          \
    ./extractorapp/target/extractorapp.war      \
    /tmp/deliverables/
+
+rm -rf /tmp/src
