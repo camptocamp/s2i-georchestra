@@ -13,7 +13,7 @@ if [[ "$1" == "-h" ]]; then
 fi
 
 # output /tmp tree
-tree /tmp
+tree -a /tmp
 
 # Restore deps from the previous build (if they exist).
 if [ "$(ls -a /tmp/artifacts 2>/dev/null)" ]; then
@@ -25,7 +25,7 @@ echo "---> Installing application source..."
 rsync -rtv /tmp/src/ .
 
 echo "---> Building application from source..."
-mvn clean install -B -Dmaven.repo.local=./.m2 -Psentry-log4j,docker -DskipTests -X
+mvn clean install -B -Dmaven.repo.local=./.m2 -Psentry-log4j,docker -DskipTests
 
 cp ./security-proxy/target/ROOT.war            \
    ./console/target/console.war                \
