@@ -12,6 +12,9 @@ if [[ "$1" == "-h" ]]; then
 	exec /usr/libexec/s2i/usage
 fi
 
+# output /tmp tree
+tree /tmp
+
 # Restore deps from the previous build (if they exist).
 if [ "$(ls -a /tmp/artifacts 2>/dev/null)" ]; then
   echo "---> Restoring build dependencies..."

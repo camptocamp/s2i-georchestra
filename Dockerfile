@@ -2,7 +2,7 @@
 FROM appuio/s2i-maven-java:latest
 
 USER root
-RUN yum -y update && yum -y install epel-release && yum -y update && yum -y install python-pip
+RUN yum -y update && yum -y install epel-release && yum -y update && yum -y install python-pip tree
 RUN pip install jstools virtualenv
 RUN ln -s /usr/lib64/python2.7/site-packages/jstools /usr/bin
 RUN mkdir /tmp/deliverables && chown default:root /tmp/deliverables
