@@ -14,7 +14,7 @@ LABEL io.k8s.description="Platform for building geOrchestra" \
       io.k8s.display-name="geOrchestra 1.0.0"  \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="georchestra-builder" \
-      io.openshift.s2i.destination="/tmp/s2i"
+      io.openshift.s2i.destination="/tmp"
 
 # sets io.openshift.s2i.scripts-url label that way, or update that label
 COPY ./s2i/bin/ /usr/libexec/s2i
