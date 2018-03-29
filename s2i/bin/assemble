@@ -13,7 +13,7 @@ if [[ "$1" == "-h" ]]; then
 fi
 
 # output /tmp tree
-tree -a /tmp
+tree -a /tmp/artifacts
 
 # Restore deps from the previous build (if they exist).
 if [ "$(ls -a /tmp/artifacts 2>/dev/null)" ]; then
