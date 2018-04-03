@@ -14,6 +14,9 @@ LABEL io.k8s.description="Platform for building geOrchestra" \
       io.openshift.s2i.destination="/tmp" \
       org.jboss.deployments-dir="/deployments"
 
+# Set to user root
+USER root
+
 # Update Packages
 RUN yum -y update
 
