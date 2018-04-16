@@ -10,12 +10,7 @@ ENV MAVEN_VERSION=3.5.3 \
 LABEL io.k8s.description="Platform for building geOrchestra" \
       io.k8s.display-name="geOrchestra 1.0.0"  \
       io.openshift.expose-services="8080" \
-      io.openshift.tags="georchestra-builder" \
-      io.openshift.s2i.destination="/tmp" \
-      org.jboss.deployments-dir="/deployments"
-
-# Set to user root
-USER root
+      io.openshift.tags="georchestra-builder"
 
 # Update Packages
 RUN yum -y update
@@ -38,9 +33,6 @@ RUN yum -y install epel-release
 # install python pip and self update
 RUN yum -y install python-pip tree && \
     pip install --upgrade pip
-
-# install build tree for output
-RUN yum -y install python-pip tree
 
 # cleanup yum
 RUN yum clean all -y

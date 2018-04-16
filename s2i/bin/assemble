@@ -26,7 +26,7 @@ echo "---> Installing application source..."
 rsync -rtv /tmp/src/ .
 
 echo "---> Building application from source..."
-mvn clean install -B -Dmaven.repo.local=./.m2 -Psentry-log4j,docker -DskipTests
+mvn clean install -B -Dmaven.repo.local=./.m2 -Psentry-log4j,docker -DskipTests -Dmaven.wagon.http.pool=false
 
 cp ./security-proxy/target/ROOT.war            \
    ./console/target/console.war                \
