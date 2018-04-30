@@ -14,8 +14,6 @@ fi
 
 # configures the mirror if defined
 if [ -n $MAVEN_MIRROR_URL ] ; then
-  mkdir /opt/app-root/src/.m2/
-
   cat <<EOF > /opt/app-root/src/.m2/settings.xml
 <settings>
   <mirrors>
