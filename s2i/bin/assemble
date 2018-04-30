@@ -12,6 +12,25 @@ if [[ "$1" == "-h" ]]; then
 	exec /usr/libexec/s2i/usage
 fi
 
+# configures the mirror if defined
+if [ -n $MAVEN_MIRROR_URL ] ; then
+  mkdir /opt/app-root/src/.m2/
+
+  cat <<EOF > /opt/app-root/src/.m2/settings.xml
+<settings>
+  <mirrors>
+    <mirror>
+      <id>defaultMirror</id>
+      <name>Default Mirror</name>
+      <url>$MAVEN_MIRROR_URL</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>
+</settings>
+EOF
+
+fi
+
 # Restore deps from the previous build (if they exist).
 if [ "$(ls -a /tmp/artifacts 2>/dev/null)" ]; then
   # output /tmp tree

@@ -3,6 +3,7 @@ FROM openshift/base-centos7
 
 MAINTAINER Marc Sutter <marc.sutter@camptocamp.com>
 
+# openshift s2i specific
 ENV MAVEN_VERSION=3.5.3 \
     BUILDER_VERSION=1.0
 
@@ -37,14 +38,14 @@ RUN yum -y install python-pip tree && \
 # cleanup yum
 RUN yum clean all -y
 
-# Install Python tools 
+# Install Python tools
 RUN pip install jstools virtualenv
 
 # Linnk Python executables
 RUN ln -s /usr/lib64/python2.7/site-packages/jstools /usr/bin
 
-# Make folder for deliverables
-RUN mkdir /tmp/deliverables
+# Make folder for deliverables, m2 configuration
+RUN mkdir /tmp/deliverables /opt/app-root/src/.m2/
 
 # S2I scripts
 COPY ./s2i/bin/ /usr/libexec/s2i
