@@ -10,6 +10,6 @@
 pushd ${HOME} >/dev/null
 
 # ${HOME}/.m2 is the maven repo dir
-tar cf - ${HOME}/.m2
+tar cf - ./.m2
 
 popd >/dev/null
