@@ -14,12 +14,14 @@ LABEL io.k8s.description="Platform for building geOrchestra" \
       io.openshift.tags="georchestra-builder"
 
 # Update Packages
-RUN yum -y update
+RUN yum -y update && \
+    yum clean all -y
 
 # Install Java
 RUN INSTALL_PKGS="java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
     yum install -y $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS
+    rpm -V $INSTALL_PKGS && \
+    yum clean all -y
 
 # Install Maven
 RUN wget -q http://www-eu.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
@@ -29,16 +31,15 @@ RUN wget -q http://www-eu.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binarie
     ln -s /opt/maven/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/mvn
 
 # Install EPEL repo
-RUN yum -y install epel-release
+RUN yum -y install epel-release && \
+    yum clean all -y
 
 # install python pip and self update
-RUN yum -y install python-pip tree
+RUN yum -y install python-pip tree && \
+    yum clean all -y
 
 # update pip
 RUN pip install --upgrade pip
-
-# cleanup yum
-RUN yum clean all -y
 
 # Install Python tools
 RUN pip install jstools virtualenv
