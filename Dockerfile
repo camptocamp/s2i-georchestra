@@ -32,8 +32,10 @@ RUN wget -q http://www-eu.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binarie
 RUN yum -y install epel-release
 
 # install python pip and self update
-RUN yum -y install python-pip tree && \
-    pip install --upgrade pip
+RUN yum -y install python-pip tree
+
+# update pip
+RUN pip install --upgrade pip
 
 # cleanup yum
 RUN yum clean all -y
