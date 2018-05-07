@@ -85,3 +85,9 @@ This will run the *save-artifacts* script which includes the custom code to back
 
 After a successful build, every webapps should be copied onto `/tmp/deliverables`, ready to be integrated to their own servlet container images (tomcat, jetty).
 
+#### exemple local build
+
+```
+s2i build -e MAVEN_MIRROR_URL=http://nexus3-dt-ftth-cicd.paas-dt-ftth.camptocamp.com/repository/maven-public/ ~/src/otc/georchestra/. s2i-georchestra georchestra
+```
+
