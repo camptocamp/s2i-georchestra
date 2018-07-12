@@ -30,7 +30,7 @@ EOF
 fi
 
 echo "---> Installing application source..."
-rsync -rtv /tmp/src/ .
+rsync -rtvl /tmp/src/ .
 
 echo "---> Building application from source..."
 mvn clean install -B -Dmaven.repo.local=./.m2 -Psentry-log4j,docker,log4j-logstash -DskipTests -Dmaven.wagon.http.pool=false
