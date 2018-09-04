@@ -4,7 +4,7 @@ FROM openshift/base-centos7
 MAINTAINER Marc Sutter <marc.sutter@camptocamp.com>
 
 # openshift s2i specific
-ENV MAVEN_VERSION=3.5.3 \
+ENV MAVEN_VERSION=3.5.4 \
     BUILDER_VERSION=1.0
 
 # Docker Image Metadata
